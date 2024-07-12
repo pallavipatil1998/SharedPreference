@@ -12,6 +12,7 @@ class _SharedPrefState extends State<SharedPref> {
 
   var _nameController= TextEditingController();
   String? name;
+  late SharedPreferences pref ;
 
   @override
   void initState() {
@@ -21,10 +22,12 @@ class _SharedPrefState extends State<SharedPref> {
   }
 
   void getName()async{
-    SharedPreferences pref= await SharedPreferences.getInstance();
+    // SharedPreferences pref= await SharedPreferences.getInstance();
+
+    pref= await SharedPreferences.getInstance();       //create instance
     name= pref.getString("Name");
-    setState(() {
-    });
+    // print(name);
+    setState(() {});
   }
 
 
@@ -41,16 +44,13 @@ class _SharedPrefState extends State<SharedPref> {
             ),
             ElevatedButton(
                 onPressed: ()async{
-                  SharedPreferences pref= await SharedPreferences.getInstance();
+                  // SharedPreferences pref= await SharedPreferences.getInstance();
                   pref.setString("Name", _nameController.text.toString());
                  /* name=_nameController.text.toString();
                   setState(() {
 
                   });*/
 
-                  setState(() {
-
-                  });
 
                 },
                 child: Text("Save")
