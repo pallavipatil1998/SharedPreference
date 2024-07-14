@@ -26,9 +26,8 @@ class _SplashPageState extends State<SplashPage> {
       Duration(seconds: 4),
             ()async {
               var pref = await SharedPreferences.getInstance();
-              var check = pref.getBool(SplashPage.KEY_IS_LOGGED_IN);
+              var check = pref.getBool(SplashPage.KEY_IS_LOGGED_IN) ?? false;
 
-              if (check != null) {
                 if (check) {
                   Navigator.pushReplacement(context,
                       MaterialPageRoute(builder: (context) => HomePage(),));
@@ -36,10 +35,7 @@ class _SplashPageState extends State<SplashPage> {
                   Navigator.pushReplacement(context,
                       MaterialPageRoute(builder: (context) => LoginPage(),));
                 }
-              }else{
-                Navigator.pushReplacement(context,
-                    MaterialPageRoute(builder: (context) => LoginPage(),));
-              }
+
             }
         );
 
@@ -50,7 +46,7 @@ class _SplashPageState extends State<SplashPage> {
     return Scaffold(
       backgroundColor:Colors.blue ,
       appBar: AppBar(title: Text("Splash Page"),),
-      body: Icon(Icons.ac_unit,color: Colors.white,size: 50,),
+      body: Center(child: Icon(Icons.ac_unit,color: Colors.white,size: 80,)),
 
     );
   }
